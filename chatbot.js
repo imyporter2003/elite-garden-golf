@@ -1,5 +1,5 @@
 /**
- * Aria - Elite Garden Golf AI Concierge
+ * Eve - Elite Garden Golf AI Concierge
  * OpenAI-powered luxury golf concierge.
  *
  * API Key Setup:
@@ -10,9 +10,9 @@
 
 const ELARA_CONFIG = {
     apiKey: (typeof ARIA_API_KEY !== 'undefined') ? ARIA_API_KEY : '',
-    name: 'Aria',
+    name: 'Eve',
     avatar: 'assets/aria_icon.png',
-    systemPrompt: `You are Aria, the Elite AI concierge for "Elite Garden Golf". 
+    systemPrompt: `You are Eve, the Elite AI concierge for "Elite Garden Golf". 
     You are professional, sophisticated, and highly knowledgeable about luxury garden golf simulator studios.
     
     Key Information for your context:
@@ -60,7 +60,7 @@ class AriaChatbot {
                 </div>
                 <div class="aria-messages" id="aria-messages"></div>
                 <div class="aria-input-area">
-                    <input type="text" class="aria-input" id="aria-input" placeholder="Ask Aria anything...">
+                    <input type="text" class="aria-input" id="aria-input" placeholder="Ask Eve anything...">
                     <button class="aria-send" id="aria-send">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                     </button>
@@ -95,7 +95,7 @@ class AriaChatbot {
     }
 
     addWelcomeMessage() {
-        this.addMessage('ai', "Welcome to Elite Garden Golf. I'm Aria, your architectural concierge. How may I assist you with your simulator project today?");
+        this.addMessage('ai', "Welcome to Elite Garden Golf. I'm Eve, your architectural concierge. How may I assist you with your simulator project today?");
         this.renderFaqChips();
     }
 
