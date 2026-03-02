@@ -133,7 +133,7 @@ class AriaChatbot {
                 body: JSON.stringify({
                     messages: [
                         { role: 'system', content: ELARA_CONFIG.systemPrompt },
-                        ...this.messages.slice(-6) // Keep context window manageable
+                        ...this.messages.slice(-6)
                     ]
                 })
             });
@@ -141,7 +141,9 @@ class AriaChatbot {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.error || 'Server error');
+                const errMsg = data.error || `HTTP ${response.status}`;
+                console.error('Aria server error:', errMsg);
+                throw new Error(errMsg);
             }
 
             const aiResponse = data.choices[0].message.content;
@@ -149,9 +151,10 @@ class AriaChatbot {
             this.addMessage('ai', aiResponse);
 
         } catch (error) {
-            console.error('Aria API Error:', error);
+            console.error('Aria API Error:', error.message || error);
             this.elements.messages.removeChild(typingDiv);
-            this.addMessage('ai', "I apologize, I'm experiencing a temporary connection issue. Please feel free to use our contact form for urgent inquiries.");
+            // Show the actual error to help diagnose
+            this.addMessage('ai', `Connection error: ${error.message}. Please check browser console (F12) for details.`);
         }
     }
 }
