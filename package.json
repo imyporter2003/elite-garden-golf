@@ -1,0 +1,8 @@
+{
+    "name": "elite-garden-golf",
+    "version": "1.0.0",
+    "description": "Elite Garden Golf luxury simulator website",
+    "engines": {
+        "node": "20.x"
+    }
+}
