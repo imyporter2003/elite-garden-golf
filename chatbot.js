@@ -126,27 +126,28 @@ class AriaChatbot {
         this.scrollToBottom();
 
         try {
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            // Call the Vercel serverless proxy — API key stays server-side
+            const response = await fetch('/api/chat', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${ELARA_CONFIG.apiKey}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    model: 'gpt-4o', // Most capable for this persona
                     messages: [
                         { role: 'system', content: ELARA_CONFIG.systemPrompt },
-                        ...this.messages.slice(-6) // Keep context
-                    ],
-                    temperature: 0.7
+                        ...this.messages.slice(-6) // Keep context window manageable
+                    ]
                 })
             });
 
             const data = await response.json();
-            const aiResponse = data.choices[0].message.content;
 
+            if (!response.ok) {
+                throw new Error(data.error || 'Server error');
+            }
+
+            const aiResponse = data.choices[0].message.content;
             this.elements.messages.removeChild(typingDiv);
             this.addMessage('ai', aiResponse);
+
         } catch (error) {
             console.error('Aria API Error:', error);
             this.elements.messages.removeChild(typingDiv);
