@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Quote | Elite Garden Golf</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">ELITE<span>GARDENGOLF</span></a>
+        <ul class="nav-links">
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="tech-deep-dive.html">Technology</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="contact.html" class="cta-button">Design Your Studio</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Start Your Project</h1>
+        <p>Complete the form below to receive a bespoke quote and architecture consultation.</p>
+    </header>
+
+    <section class="contact">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px;">
+            <div class="reveal">
+                <h2>Bespoke Quote Request</h2>
+                <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px; margin-top: 30px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">First
+                                Name</label>
+                            <input type="text" placeholder="James" required
+                                style="padding: 15px; background: var(--card-bg); border: 1px solid var(--glass); border-radius: 8px; color: white;">
+                        </div>
+                        <div>
+                            <label
+                                style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Last
+                                Name</label>
+                            <input type="text" placeholder="Harrison" required
+                                style="padding: 15px; background: var(--card-bg); border: 1px solid var(--glass); border-radius: 8px; color: white;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Email
+                            Address</label>
+                        <input type="email" placeholder="james@example.com" required
+                            style="padding: 15px; background: var(--card-bg); border: 1px solid var(--glass); border-radius: 8px; color: white;">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Phone
+                            Number</label>
+                        <input type="tel" placeholder="+44 7700 900000"
+                            style="padding: 15px; background: var(--card-bg); border: 1px solid var(--glass); border-radius: 8px; color: white;">
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Interested
+                            Studio Tier</label>
+                        <select id="tier-select" required
+                            style="padding: 15px; background: var(--card-bg); border: 1px solid var(--glass); border-radius: 8px; color: white;">
+                            <option value="" disabled selected>Select a tier...</option>
+                            <option value="par">The Par Pod (£24,950+VAT)</option>
+                            <option value="birdie">The Birdie Bay (£39,950+VAT)</option>
+                            <option value="eagle">The Eagle Estate (£59,950+VAT)</option>
+                            <option value="custom">Fully Custom Solution</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label
+                            style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Project
+                            Details</label>
+                        <textarea
+                            placeholder="Tell us about your garden space, approximate dimensions, and any technology preferences..."
+                            style="padding: 15px; background: var(--card-bg); border: 1px solid var(--glass); border-radius: 8px; color: white; height: 150px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn primary">Send Quote Request &rarr;</button>
+                </form>
+            </div>
+
+            <div class="reveal"
+                style="background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--glass);">
+                <h3>Contact Details</h3>
+                <div style="margin-top: 30px;">
+                    <div style="margin-bottom: 25px;">
+                        <strong style="color: var(--primary); display: block; margin-bottom: 5px;">Headquarters</strong>
+                        <p>12 Green View, Golfing Oaks<br>Wentworth Estate, Surrey GU25 4QW</p>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <strong style="color: var(--primary); display: block; margin-bottom: 5px;">Phone</strong>
+                        <p>0800 ELITE GOLF<br>01276 800 450</p>
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <strong style="color: var(--primary); display: block; margin-bottom: 5px;">Email</strong>
+                        <p>inquiry@elitegardengolf.com<br>support@elitegardengolf.com</p>
+                    </div>
+                    <div style="margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--glass);">
+                        <h4>Showroom Hours</h4>
+                        <p style="margin-top: 10px;">Mon - Fri: 09:00 - 18:00<br>Sat: 10:00 - 16:00 (Appt Only)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo">ELITE<span>GARDENGOLF</span></a>
+                <p style="margin-top: 15px;">Luxury garden golf studios, built to the highest architectural standards.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="pricing.html">Pricing Tiers</a></li>
+                    <li><a href="tech-deep-dive.html">The Technology</a></li>
+                    <li><a href="testimonials.html">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Request a Quote</a></li>
+                    <li><a href="mailto:info@elitegardengolf.com">info@elitegardengolf.com</a></li>
+                    <li>0800 ELITE GOLF</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Elite Garden Golf. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

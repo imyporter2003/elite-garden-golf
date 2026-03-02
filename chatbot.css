@@ -1,0 +1,278 @@
+/* Aria Chatbot Widget Styles */
+:root {
+    --aria-gold: #D4AF37;
+    --aria-emerald: #0A291A;
+    --aria-glass: rgba(28, 28, 28, 0.95);
+    --aria-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.aria-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Launcher Button */
+.aria-launcher {
+    width: 65px;
+    height: 65px;
+    background: var(--aria-gold);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--aria-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.aria-launcher:hover {
+    transform: scale(1.1);
+}
+
+.aria-launcher img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--aria-gold);
+}
+
+.aria-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--aria-gold);
+    opacity: 0.5;
+    animation: aria-pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes aria-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Chat Window */
+.aria-window {
+    position: absolute;
+    bottom: 85px;
+    right: 0;
+    width: 380px;
+    height: 550px;
+    background: var(--aria-glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: var(--aria-shadow);
+    transform-origin: bottom right;
+    transition: all 0.3s ease;
+}
+
+.aria-window.active {
+    display: flex;
+    animation: aria-slidein 0.3s forwards;
+}
+
+@keyframes aria-slidein {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.aria-header {
+    background: var(--aria-emerald);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--aria-gold);
+}
+
+.aria-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.aria-header-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--aria-gold);
+}
+
+.aria-header-text h3 {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.aria-header-text span {
+    color: var(--aria-gold);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.aria-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #44ff44;
+    border-radius: 50%;
+}
+
+.aria-close {
+    cursor: pointer;
+    color: white;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.aria-close:hover {
+    opacity: 1;
+}
+
+/* Messages Area */
+.aria-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.aria-msg {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.aria-msg.ai {
+    align-self: flex-start;
+    background: rgba(10, 41, 26, 0.5);
+    color: white;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.aria-msg.user {
+    align-self: flex-end;
+    background: var(--aria-gold);
+    color: #121212;
+    border-bottom-right-radius: 2px;
+    font-weight: 500;
+}
+
+/* Typing Indicator */
+.aria-typing {
+    display: flex;
+    gap: 4px;
+    padding: 5px 0;
+}
+
+.aria-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--aria-gold);
+    border-radius: 50%;
+    animation: aria-typing 1.4s infinite;
+}
+
+.aria-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.aria-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes aria-typing {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+/* Input Area */
+.aria-input-area {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 10px;
+}
+
+.aria-input {
+    flex: 1;
+    background: #252525;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: white;
+    font-family: inherit;
+    outline: none;
+}
+
+.aria-input:focus {
+    border-color: var(--aria-gold);
+}
+
+.aria-send {
+    background: var(--aria-gold);
+    border: none;
+    border-radius: 8px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.aria-send:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .aria-window {
+        width: calc(100vw - 40px);
+        height: 70vh;
+        right: -10px;
+    }
+}
