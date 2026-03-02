@@ -1,30 +1,39 @@
 /**
  * Vercel Serverless Function: /api/chat
- * 
- * Proxies messages to OpenAI so the API key stays server-side
- * and is never exposed in the browser.
- * 
+ * Proxies messages to OpenAI — API key stays server-side.
  * Set ARIA_API_KEY in your Vercel project environment variables.
  */
 
-export default async function handler(req, res) {
-    // Only allow POST
+module.exports = async function handler(req, res) {
+    // CORS headers (needed if the domain ever differs)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     const apiKey = process.env.ARIA_API_KEY;
     if (!apiKey) {
-        return res.status(500).json({ error: 'API key not configured on server.' });
+        console.error('ARIA_API_KEY environment variable is not set.');
+        return res.status(500).json({ error: 'Server misconfiguration: API key not set.' });
     }
 
-    const { messages } = req.body;
+    // Parse body — Vercel auto-parses JSON when Content-Type is application/json
+    const body = req.body || {};
+    const { messages } = body;
+
     if (!messages || !Array.isArray(messages)) {
-        return res.status(400).json({ error: 'Invalid request body. Expected { messages: [] }' });
+        return res.status(400).json({ error: 'Invalid request: messages array required.' });
     }
 
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        const openAIResponse = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,16 +47,17 @@ export default async function handler(req, res) {
             })
         });
 
-        if (!response.ok) {
-            const err = await response.json();
-            return res.status(response.status).json({ error: err.error?.message || 'OpenAI error' });
+        const data = await openAIResponse.json();
+
+        if (!openAIResponse.ok) {
+            console.error('OpenAI error:', data);
+            return res.status(openAIResponse.status).json({ error: data.error?.message || 'OpenAI error' });
         }
 
-        const data = await response.json();
         return res.status(200).json(data);
 
     } catch (err) {
-        console.error('Aria proxy error:', err);
-        return res.status(500).json({ error: 'Internal server error' });
+        console.error('Aria proxy error:', err.message);
+        return res.status(500).json({ error: 'Internal server error: ' + err.message });
     }
-}
+};
