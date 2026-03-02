@@ -95,7 +95,32 @@ class AriaChatbot {
     }
 
     addWelcomeMessage() {
-        this.addMessage('ai', "Welcome to Elite Garden Golf. I am Aria, your architectural concierge. How may I assist you with your simulator project today?");
+        this.addMessage('ai', "Welcome to Elite Garden Golf. I'm Aria, your architectural concierge. How may I assist you with your simulator project today?");
+        this.renderFaqChips();
+    }
+
+    renderFaqChips() {
+        const faqs = [
+            'What are your pricing tiers?',
+            'How long does installation take?',
+            'Do I need planning permission?',
+            'What launch monitors are available?'
+        ];
+        const chipsDiv = document.createElement('div');
+        chipsDiv.className = 'aria-faq-chips';
+        faqs.forEach(q => {
+            const chip = document.createElement('button');
+            chip.className = 'aria-faq-chip';
+            chip.textContent = q;
+            chip.onclick = () => {
+                chipsDiv.remove();
+                this.elements.input.value = q;
+                this.sendMessage();
+            };
+            chipsDiv.appendChild(chip);
+        });
+        this.elements.messages.appendChild(chipsDiv);
+        this.scrollToBottom();
     }
 
     addMessage(role, content) {

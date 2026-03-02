@@ -276,3 +276,29 @@
         right: -10px;
     }
 }
+
+/* FAQ Quick-Reply Chips */
+.aria-faq-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px 0 8px 0;
+}
+
+.aria-faq-chip {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    border-radius: 20px;
+    color: var(--aria-gold);
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.aria-faq-chip:hover {
+    background: rgba(212, 175, 55, 0.12);
+    border-color: var(--aria-gold);
+}
