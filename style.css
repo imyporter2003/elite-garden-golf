@@ -295,6 +295,25 @@ section {
     padding: 100px 5%;
 }
 
+/* Technology page — image + text 2-col grid */
+.tech-visual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .tech-visual-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .tech-visual-grid img {
+        width: 100%;
+    }
+}
+
 /* Feature Icons */
 .feature-icon {
     width: 60px;
