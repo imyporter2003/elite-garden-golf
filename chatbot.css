@@ -277,12 +277,17 @@
     }
 }
 
-/* FAQ Quick-Reply Chips */
-.aria-faq-chips {
+/* FAQ Persistent Suggestion Tray */
+.aria-suggestions {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 4px 0 8px 0;
+    gap: 7px;
+    padding: 10px 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(18, 18, 18, 0.6);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .aria-faq-chip {
@@ -292,10 +297,11 @@
     color: var(--aria-gold);
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.78rem;
-    padding: 6px 14px;
+    font-size: 0.75rem;
+    padding: 5px 13px;
     transition: background 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .aria-faq-chip:hover {

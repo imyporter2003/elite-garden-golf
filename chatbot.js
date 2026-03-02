@@ -28,7 +28,10 @@ class AriaChatbot {
     constructor() {
         this.isOpen = false;
         this.messages = [];
-        this.init();
+        this.createUI();
+        this.addEventListeners();
+        this.addWelcomeMessage();
+        this.renderFaqChips();
     }
 
     init() {
@@ -59,6 +62,7 @@ class AriaChatbot {
                     </div>
                 </div>
                 <div class="aria-messages" id="aria-messages"></div>
+                <div class="aria-suggestions" id="aria-suggestions"></div>
                 <div class="aria-input-area">
                     <input type="text" class="aria-input" id="aria-input" placeholder="Ask Eve anything...">
                     <button class="aria-send" id="aria-send">
@@ -73,6 +77,7 @@ class AriaChatbot {
             window: document.getElementById('aria-window'),
             close: document.getElementById('aria-close'),
             messages: document.getElementById('aria-messages'),
+            suggestions: document.getElementById('aria-suggestions'),
             input: document.getElementById('aria-input'),
             send: document.getElementById('aria-send')
         };
@@ -96,7 +101,6 @@ class AriaChatbot {
 
     addWelcomeMessage() {
         this.addMessage('ai', "Welcome to Elite Garden Golf. I'm Eve, your architectural concierge. How may I assist you with your simulator project today?");
-        this.renderFaqChips();
     }
 
     renderFaqChips() {
@@ -106,21 +110,18 @@ class AriaChatbot {
             'Do I need planning permission?',
             'What launch monitors are available?'
         ];
-        const chipsDiv = document.createElement('div');
-        chipsDiv.className = 'aria-faq-chips';
+        const tray = this.elements.suggestions;
+        tray.innerHTML = '';
         faqs.forEach(q => {
             const chip = document.createElement('button');
             chip.className = 'aria-faq-chip';
             chip.textContent = q;
             chip.onclick = () => {
-                chipsDiv.remove();
                 this.elements.input.value = q;
                 this.sendMessage();
             };
-            chipsDiv.appendChild(chip);
+            tray.appendChild(chip);
         });
-        this.elements.messages.appendChild(chipsDiv);
-        this.scrollToBottom();
     }
 
     addMessage(role, content) {
