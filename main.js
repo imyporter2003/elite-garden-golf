@@ -19,6 +19,23 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('nav-hamburger');
+    const navbar = document.querySelector('.navbar');
+    if (hamburger && navbar) {
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('nav-open');
+        });
+        // Close when a link is tapped
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => navbar.classList.remove('nav-open'));
+        });
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) navbar.classList.remove('nav-open');
+        });
+    }
+
     // Auto-select tier from URL query param (e.g. contact.html?tier=eagle)
     const params = new URLSearchParams(window.location.search);
     const tierParam = params.get('tier');
